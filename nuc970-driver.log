@@ -1,0 +1,8 @@
+drivers 
+
+1. drivers/gpio
+  gpio-nuc970.c
+  Makefile
+  Kconfig
+
+

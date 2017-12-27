@@ -1,0 +1,35 @@
+how to build
+
+copy bsp/rootfs_48  linux-4.4.38'dir(not in linux-4.4.38)
+make directory image
+copy patches to linux-4.4.38'dir
+
+# ls 
+it should be
+linux-4.4.38  rootfs_48 image patches
+4 directories listed above.
+
+export arm-linux-gcc v4.8.3 to path
+export uboot/tool to mkdimage(I have copied mkimage to arm-linux-gcc/bin)
+
+# export ARCH=arm
+# export CROSS_COMPILE=arm-linux-
+# quilt  push -a
+sometimes you can execute "quilt pop -a " then input "quilt push -a"
+# cd linux-4.4.38
+# make  nuc972_defconfig
+
+# make menuconfig
+to set rootfs to rootfs_48 if we use compiler v4.8+
+
+# make uImage
+
+burn uImage in NAND flash
+Image Name            : 970uimage
+Image  Type           : Data
+Image Encrypt         : Disalble
+Image start offset    : 0x200000
+
+uboot env setting
+> set bootcmd nboot 0x7fc0 0 0x200000\; bootm 0x7fc0
+> saveenv
